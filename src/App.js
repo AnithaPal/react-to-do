@@ -7,13 +7,20 @@ class App extends Component {
         super(props);
         this.state = {
             todos: [
-                { description: 'Walk the cat', isCompleted: true },
-                { description: 'Throw the dishes away', isCompleted: false },
-                { description: 'Buy new dishes', isCompleted: false }
+                { description: 'Walk the Dog', isCompleted: true },
+                { description: 'Empty Dishwasher', isCompleted: false },
+                { description: 'Pickup Anya', isCompleted: false }
             ],
 
             newTodoDescription: ''
         };
+    }
+
+
+    deleteToDo(description) {
+        const newToDo = this.state.todos.filter(todo => todo.description !==  description)
+        this.setState({ todos: newToDo});
+
     }
 
     handleChange(e) {
@@ -46,7 +53,8 @@ class App extends Component {
                         <ToDo key = { index }
                         description = { todo.description }
                         isCompleted = { todo.isCompleted }
-                        toggleComplete={ () => this.toggleComplete(index)}
+                        toggleComplete={ () => this.toggleComplete(index) `q`}
+                        deleteToDo={ () => this.deleteToDo(todo.description) }
                         />
                     )
                 } 
@@ -59,10 +67,6 @@ class App extends Component {
         );
     }
 }
-
-
-
-
 
 
 export default App;
